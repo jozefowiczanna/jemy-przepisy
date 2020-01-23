@@ -1,0 +1,33 @@
+.navbar {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  background: $nav-bg;
+  
+  &__inner {
+    display: flex;
+    align-items: center;
+  }
+
+  &__brand {
+    font-size: 20px;
+    font-weight: $semi-bold;
+    color: $nav-icon;
+    text-decoration: none;
+    padding: 5px;
+  }
+}
+
+.nav {                           
+  margin-left: auto;
+
+  &__link {
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px;
+  }
+
+  &__icon {
+    width:30px;
+  }
+}

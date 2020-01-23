@@ -1,0 +1,39 @@
+.section {
+  margin-bottom: 30px;
+
+  &__title {
+    font-weight: $semi-bold;
+    font-size: $h1;
+    position: relative;
+    margin: 20px 0 40px;
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: -20px;
+      width: 115px;
+      height: 4px;
+      background: $primary;
+    }
+
+    &--big {
+      font-size: 34px;
+    }
+  }
+  
+  &__para {
+    line-height: 1.5;
+
+    &-link {
+      color: $primary;
+      text-decoration: underline;
+      font-weight: $semi-bold;
+      transition: $def-transition;
+
+      &:hover {
+        color: $primary-dark;
+      }
+    }
+  }
+}

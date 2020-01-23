@@ -1,0 +1,74 @@
+html {
+  box-sizing: border-box;
+  font-size: $para;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  color: #222222;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.container--no-padding {
+  // padding: 0;
+}
+
+.under-nav {
+  height: 45px;
+}
+
+// grid
+
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+// max 3 columns
+.col {
+  width: 100%;
+  margin: 15px !important;
+
+  @media (min-width: 800px) {
+    width: calc(50% - 30px);
+  }
+
+  @media (min-width: 1200px) {
+    width: calc(33.333% - 30px);
+  }
+}
+
+// max 2 columns
+.col-featured {
+  width: 100%;
+  margin: 15px !important;
+
+  @media (min-width: 800px) {
+    width: calc(50% - 30px);
+  }
+  
+}
+
+// TODO przenieść do sekcji
+.main-img {
+  min-height: 200px;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image: url(../images/food/food.jpeg);
+  transition: $def-transition;
+  margin: 20px 0;
+  box-shadow: 20px 20px 0 $nav-bg;
+  border: 2px solid $nav-bg;
+}
