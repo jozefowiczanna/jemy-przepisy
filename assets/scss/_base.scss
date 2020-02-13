@@ -50,7 +50,7 @@ body {
 }
 
 // max 2 columns
-.col-featured {
+.col-2 {
   width: 100%;
   margin: 15px !important;
 
@@ -59,7 +59,13 @@ body {
   }
 }
 
-.col-featured.d-none {
+.col-3 {
+  @media (min-width: 1100px) {
+    width: calc(33.3% - 30px);
+  }
+}
+
+.col-2.d-none {
   display: none;
   
   @media (min-width: 800px) {

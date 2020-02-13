@@ -1,0 +1,24 @@
+.form {
+  margin-top: 50px;
+
+  &__select {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: transparent;
+    margin: 20px 0;
+    font-size: 15px;
+    color: #505050;
+  }
+
+  &__form-group {
+    margin-bottom: 10px;
+  }
+
+  &__btn {
+    margin-top: 20px;
+  }
+}

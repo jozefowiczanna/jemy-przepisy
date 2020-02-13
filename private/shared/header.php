@@ -1,3 +1,10 @@
+<?php 
+
+if(!isset($page_title)) { $page_title = 'Jemy'; }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +20,7 @@
     <div class="navbar">
       <div class="container">
         <div class="navbar__inner">
-          <a href="index.html" class="navbar__brand">JEMY!</a>
+          <a href="index.php" class="navbar__brand">JEMY!</a>
           <nav class="nav">
             <a href="przepisy.html" class="nav__link"><img src="assets/images/icons/menu_book-24px.svg" alt="przepisy" class="nav__icon"></a>
             <a href="uzytkownicy.html" class="nav__link"><img src="assets/images/icons/people-24px.svg" alt="użytkownicy" class="nav__icon"></a>

@@ -1,12 +1,17 @@
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+
   border: 1px solid $border;
   border-radius: 4px;
   position: relative;
   margin: 0 0 30px;
 
   &:hover .card__img {
-    opacity: 0.9;
-    transform: scale(1.1);
+    opacity: 0.92;
+    transform: scale(1.01);
   }
 
   &__label {
