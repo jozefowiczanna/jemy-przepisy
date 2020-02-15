@@ -1,24 +1,63 @@
 .form {
   margin-top: 50px;
+  max-width: 450px;
+  
+  &--flex {
+    display: flex;
+    flex-direction: column;
+  }
 
-  &__select {
+  &__label {
+    font-weight: $semi-bold;
+  }
+
+  &__label-info {
+    font-weight: $regular;
+    display: block;
+    margin-top: 5px;
+    font-size: 15px;
+  }
+
+  &__select, &__input {
     display: block;
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
     background: transparent;
-    margin: 20px 0;
+    margin: 10px 0 20px;
     font-size: 15px;
     color: #505050;
+    &--error {
+      border-color: #ff0000;
+    }
   }
 
   &__form-group {
-    margin-bottom: 10px;
+    margin: 20px auto 10px;
+  }
+
+  &__info, &__link {
+    font-size: 15px;
+  }
+
+  &__info {
+    margin: 20px auto 5px;
+  }
+
+  &__link {
+    margin: 0 auto;
   }
 
   &__btn {
     margin-top: 20px;
+    margin: 20px auto 0;
+  }
+
+  &__error {
+    color: #ff0000;
+    margin: -10px 0 20px;
+    font-size: 14px;
   }
 }

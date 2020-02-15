@@ -19,12 +19,20 @@ body {
   padding: 0 15px;
 }
 
-.container--no-padding {
-  // padding: 0;
-}
 
 .under-nav {
   height: 45px;
+}
+
+.link {
+  color: $primary;
+  text-decoration: underline;
+  font-weight: $semi-bold;
+  transition: $def-transition;
+
+  &:hover {
+    color: $primary-dark;
+  }
 }
 
 // grid

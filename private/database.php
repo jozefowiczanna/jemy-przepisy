@@ -3,29 +3,20 @@
   require_once('db_credentials.php');
 
   function db_connect() {
-    $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-    confirm_db_connect();
-    mysqli_query($connection, "SET CHARSET utf8");
-    mysqli_query($connection, "SET NAMES `utf8` COLLATE `utf8_unicode_ci`");
+    try {
+      $dsn = 'mysql:host=' . DB_SERVER . ';dbname=' . DB_NAME . ';charset=utf8';
+      $connection = new PDO($dsn, DB_USER, DB_PASS);
+    } catch (Exception $e) {
+      $error = $e->getMessage();
+      $msg = "Database connection failed: " . $error;
+      exit($msg);
+    }
     return $connection;
   }
 
   function db_disconnect($connection) {
     if(isset($connection)) {
-      mysqli_close($connection);
-    }
-  }
-
-  function db_escape($connection, $string) {
-    return mysqli_real_escape_string($connection, $string);
-  }
-
-  function confirm_db_connect() {
-    if(mysqli_connect_errno()) {
-      $msg = "Database connection failed: ";
-      $msg .= mysqli_connect_error();
-      $msg .= " (" . mysqli_connect_errno() . ")";
-      exit($msg);
+      $connection = null;
     }
   }
 

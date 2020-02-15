@@ -5,10 +5,12 @@
 
     $sql = "SELECT r.*, c.category FROM recipes r ";
     $sql .= "JOIN categories c ON r.category_id = c.id ";
-    $sql .= "WHERE r.id='" . db_escape($db, $id) . "'";
-    $result = mysqli_query($db, $sql);
+    $sql .= "WHERE r.id = :id";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
 
-    $row = mysqli_fetch_assoc($result);
+    $row = $stmt->fetch();
     $row['date_added'] = datetime_to_date($row['date_added']);
     $row['difficulty_desc'] = get_difficulty_desc($row['difficulty']);
 
@@ -17,29 +19,35 @@
 
   function find_recipes($options=[]) {
     global $db;
-
     $category = $options['category'] ?? "all";
-    $sort = $options['sort'] ?? "date_added";
+    // no PDO bind param for ORDER BY
+    // prevent SQL injection by making sure only 1 of 2 values is selected
+    $sort = ($options['sort'] == "num_likes") ? "num_likes" : "date_added";
 
     $sql = "SELECT r.*, c.category FROM recipes r ";
     $sql .= "JOIN categories c ON r.category_id = c.id ";
     if ($category !== "all") {
-      $sql .= "WHERE category_id='" . $category . "' ";
+      $sql .= "WHERE category_id = :category ";
     }
-    $sql .= "ORDER BY " . $sort . " DESC";
-    $result = mysqli_query($db, $sql);
+    $sql .= "ORDER BY $sort DESC";
+    $stmt = $db->prepare($sql);
+    if ($category !== "all") {
+      $stmt->bindParam(':category', $category);
+    }
+    $stmt->execute();
 
-    return $result;
+    return $stmt;
   }
 
   function find_top_recipe($column) {
     global $db;
     $sql = "SELECT r.*, c.category FROM recipes r ";
     $sql .= "JOIN categories c ON r.category_id = c.id ";
-    $sql .= "ORDER BY " . $column . " DESC LIMIT 1";
-    $result = mysqli_query($db, $sql);
+    $sql .= "ORDER BY $column DESC LIMIT 1";
 
-    $row = mysqli_fetch_assoc($result);
+    $result = $db->query($sql);
+
+    $row = $result->fetch();
     $row['date_added'] = datetime_to_date($row['date_added']);
     $row['difficulty_desc'] = get_difficulty_desc($row['difficulty']);
     if ($column === "date_added") {
@@ -55,7 +63,7 @@
     global $db;
 
     $sql = "SELECT * FROM categories";
-    $result = mysqli_query($db, $sql);
+    $result = $db->query($sql);
 
     return $result;
   }

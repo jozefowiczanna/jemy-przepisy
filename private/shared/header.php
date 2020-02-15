@@ -22,9 +22,9 @@ if(!isset($page_title)) { $page_title = 'Jemy'; }
         <div class="navbar__inner">
           <a href="index.php" class="navbar__brand">JEMY!</a>
           <nav class="nav">
-            <a href="przepisy.html" class="nav__link"><img src="assets/images/icons/menu_book-24px.svg" alt="przepisy" class="nav__icon"></a>
-            <a href="uzytkownicy.html" class="nav__link"><img src="assets/images/icons/people-24px.svg" alt="użytkownicy" class="nav__icon"></a>
-            <a href="profil.html" class="nav__link"><img src="assets/images/icons/person-24px.svg" alt="twój profil" class="nav__icon"></a>
+            <a href="recipes.php" class="nav__link"><img src="assets/images/icons/menu_book-24px.svg" alt="przepisy" class="nav__icon"></a>
+            <a href="users.php" class="nav__link"><img src="assets/images/icons/people-24px.svg" alt="użytkownicy" class="nav__icon"></a>
+            <a href="register.php" class="nav__link"><img src="assets/images/icons/person-24px.svg" alt="twój profil" class="nav__icon"></a>
           </nav>
         </div>
       </div>

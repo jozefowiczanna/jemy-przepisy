@@ -41,7 +41,7 @@
 
     <?php 
     
-    if (!mysqli_num_rows($all_recipes)) {
+    if (!$all_recipes->rowCount()) {
       echo "<p>Brak wyników.</p>";
     }
     
@@ -49,7 +49,7 @@
 
     <div class="flex-row">
     <?php 
-      while ($recipe = mysqli_fetch_assoc($all_recipes)) {
+      while ($recipe = $all_recipes->fetch()) {
         $recipe['date_added'] = datetime_to_date($recipe['date_added']);
         $recipe['difficulty_desc'] = get_difficulty_desc($recipe['difficulty']);
         include(SHARED_PATH . '/recipe.php');
