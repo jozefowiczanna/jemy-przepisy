@@ -1,45 +1,42 @@
 <?php 
   require_once('private/initialize.php'); 
+
 ?>
 
 <?php include(SHARED_PATH . '/header.php'); ?>
 <section class="section">
   <div class="container">
-    <h1 class="section__title">Zarejestruj się</h1>
-    <form action="register.php" method="post" class="form form--flex">
+    <h1 class="section__title section__title--centered">Zarejestruj się</h1>
+    <form action="send-script.php" method="post" class="form form--flex form--centered js-form-register">
       <div class="form__row">
-        <label for="nick" class="form__label"><span class="form__label">Pseudonim
+        <label for="fusername" class="form__label"><span class="form__label">Pseudonim
           <span class="form__label-info">(widoczny dla innych użytkowników)</span>
         </label>
-        <input type="text" id="nick" name="nick" class="form__input">
-        <div class="form__error">Pseudonim może zawierać tylko litery, cyfry i znak spacji</div>
+        <input type="text" id="fusername" name="fusername" class="form__input" autocomplete="off">
+        <p class="form__error">Pseudonim musi składać się z 3-50 znaków, bez znaków specjalnych "<>"</p>
       </div>
       <div class="form__row">
-        <label for="email" class="form__label">Email 
+        <label for="femail" class="form__label">Email 
           <span class="form__label-info">(wymagany tylko przy logowaniu, niewidoczny dla innych)</span>
         </label>
-        <input type="email" id="email" name="email" class="form__input">
-        <div class="form__error">Niepoprawny format adresu email</div>
+        <input type="text" id="femail" name="femail" class="form__input" autocomplete="off">
+        <p class="form__error">Niepoprawny format adresu email</p>
       </div>
       <div class="form__row">
-        <label for="password" class="form__label">Hasło</label>
-        <input type="password" id="password" name="password" class="form__input">
-        <div class="form__error">Hasło musi składać się z co najmniej 8 znaków, w tym jednej 1&nbspwielkiej litery, 1 małej litery i 1 cyfry</div>
-        <!-- "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" -->
+        <label for="fpassword" class="form__label">Hasło</label>
+        <input type="password" id="fpassword" name="fpassword" class="form__input" autocomplete="off">
+        <p class="form__error">Hasło musi składać się z 6-30 znaków (bez polskich znaków), w tym co najmniej 1 litery i 1 cyfry</p>
       </div>
       <div class="form__row">
-        <label for="password-confirm" class="form__label">Powtórz hasło</label>
-        <input type="password" id="password-confirm" name="password-confirm" class="form__input">
-        <div class="form__error">Hasła muszą być identyczne</div>
+        <label for="fpassword2" class="form__label">Powtórz hasło</label>
+        <input type="password" id="fpassword2" name="fpassword2" class="form__input" autocomplete="off">
+        <p class="form__error">Hasła muszą być identyczne</p>
       </div>
-      <button class="cta-btn form__btn" type="submit" name="submit">Zarejestruj się</button>
-      <div class="form__info">Masz już konto?</div>
+      <button class="cta-btn form__btn" type="submit" name="btn-submit">Zarejestruj się</button>
+      <p class="form__info">Masz już konto?</p>
       <a href="#" class="link form__link">Zaloguj się!</a>
     </form>
   </div>
 </section>
-
-
-
   
 <?php include(SHARED_PATH . '/footer.php'); ?>

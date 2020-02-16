@@ -68,4 +68,33 @@
     return $result;
   }
 
+  function find_user_by_email($email) {
+    global $db;
+
+    $sql = "SELECT email FROM users WHERE email = :email";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+    $result = $stmt->fetch();
+
+    return $result;
+  }
+
+  function insert_user($user) {
+    global $db;
+
+    $hashed_password = password_hash($user['password'], PASSWORD_DEFAULT);
+    $signup_date = date("Y-m-d H:i:s");
+
+    $sql = "INSERT INTO users (username, email, hashed_password, signup_date, num_recipes, num_likes) ";
+    $sql .= "VALUES (:username, :email, :hashed_password, '$signup_date', '0', '0')";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':username', $user['username']);
+    $stmt->bindParam(':email', $user['email']);
+    $stmt->bindParam(':hashed_password', $hashed_password);
+    $result = $stmt->execute();
+
+    return $result;
+  }
+
 ?>

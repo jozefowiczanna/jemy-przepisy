@@ -175,6 +175,22 @@ body {
   background: #2EAF00;
 }
 
+.section__title--centered {
+  text-align: center;
+}
+
+.section__title--centered::after {
+  display: block;
+  position: absolute;
+  bottom: -20px;
+  width: 115px;
+  height: 4px;
+  background: #2EAF00;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
 .section__title--big {
   font-size: 34px;
 }
@@ -418,6 +434,10 @@ body {
           flex-direction: column;
 }
 
+.form--centered {
+  margin: 0 auto;
+}
+
 .form__label {
   font-weight: 600;
 }
@@ -467,9 +487,66 @@ body {
   margin: 20px auto 0;
 }
 
+.form__btn.element-is-busy {
+  background: #bbb;
+}
+
 .form__error {
   color: #ff0000;
   margin: -10px 0 20px;
   font-size: 14px;
+  display: none;
+}
+
+.form__error.visible {
+  display: block;
+}
+
+/* ---------------------------------------------------- */
+/* loading */
+/* ---------------------------------------------------- */
+.elem-is-busy {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.elem-is-busy::after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-right-color: rgba(0, 0, 0, 0.7);
+  -webkit-transform: translate(-50%, -50%) rotate(0deg);
+          transform: translate(-50%, -50%) rotate(0deg);
+  content: "";
+  -webkit-animation: rotateSingleLoading 0.3s infinite linear;
+          animation: rotateSingleLoading 0.3s infinite linear;
+  z-index: 10;
+}
+
+@-webkit-keyframes rotateSingleLoading {
+  from {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+            transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes rotateSingleLoading {
+  from {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+            transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 /*# sourceMappingURL=main.css.map */
