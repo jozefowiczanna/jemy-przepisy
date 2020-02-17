@@ -480,6 +480,8 @@ body {
 
 .form__link {
   margin: 0 auto;
+  text-align: center;
+  display: block;
 }
 
 .form__btn {
@@ -500,6 +502,11 @@ body {
 
 .form__error.visible {
   display: block;
+}
+
+.form__msg {
+  margin: 20px;
+  text-align: center;
 }
 
 /* ---------------------------------------------------- */

@@ -1,22 +1,54 @@
+window.addEventListener("DOMContentLoaded", function() {
+
+
 // ***** js-form-register in register.php *****
 
 registerRegex = {
-  fusername: /^[^<>]{3,50}$/,
-  femail: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-  fpassword: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,30}$/,
-  fpassword2: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,30}$/
+  username: /^[^<>]{3,50}$/,
+  email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,30}$/,
+  password2: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,30}$/
+}
+
+const form = document.querySelector(".js-form-register");
+const url = form.getAttribute("action");
+const method = form.getAttribute("method");
+const container = form.parentElement;
+
+function appendMessage(status) {
+  form.remove();
+  const frag = document.createDocumentFragment();
+  const el = document.createElement("p");
+  if (status === "success") {
+    el.textContent = "Rejestracja przebiegła pomyślnie!";
+  } else if (status === "fail") {
+    el.textContent = "Błąd po stronie serwera. Spróbuj później.";
+  }
+  el.classList.add("form__msg");
+  frag.appendChild(el);
+  if (status === "success") {
+    const link = document.createElement("a");
+    link.textContent = "Przejdź do profilu";
+    link.classList.add("link");
+    link.classList.add("form__link");
+    link.href = "profil.php";
+    frag.appendChild(link);
+  }
+  container.appendChild(frag);
 }
 
 function sendForm() {
-  const form = document.querySelector(".js-form-register");
-  const url = form.getAttribute("action");
-  const method = form.getAttribute("method");
+
   const formInputs = document.querySelectorAll(".js-form-register .form__input");
   const formData = new FormData();
+  const btnSubmit = form.querySelector("[type=submit]");
+  const userExists = document.querySelector(".js-user-exists");
+  const emailInput = document.querySelector("#email");
+  
   for (const el of formInputs) {
     formData.append(el.name, el.value)
   }
-
+  
   fetch(url, {
     method: method.toUpperCase(),
     body: formData
@@ -24,12 +56,22 @@ function sendForm() {
   .then(res => res.json())
   .then(res => {
     console.log(res);
+    if (res.userexists) {
+      userExists.classList.add("visible");
+      emailInput.classList.add("form__input--error");
+    } else {
+      userExists.classList.remove("visible");
+      emailInput.classList.remove("form__input--error");
+    }
     if (res.errors) { //błędne pola
       const inputs = res.errors;
       for (input of inputs) {
         const el = document.querySelector("#" + input)
         addErrorClasses(el);
       }
+    }
+    if (res.status) {
+      appendMessage(res.status)
     }
   }).catch((e) => {
     console.log(e);
@@ -67,8 +109,8 @@ if (document.querySelector(".js-form-register")) {
 
     let error = false;
 
-    if (id === "fpassword") {
-      const pass2 = document.querySelector("#fpassword2");
+    if (id === "password") {
+      const pass2 = document.querySelector("#password2");
       // show error only if passwords don't match AND if user typed something in second password field
       if (el.value !== pass2.value && pass2.value != "") {
         addErrorClasses(pass2);
@@ -82,8 +124,8 @@ if (document.querySelector(".js-form-register")) {
         addErrorClasses(el);
         error = true;
       }
-    } else if (id === "fpassword2") {
-      const pass1 = document.querySelector("#fpassword");
+    } else if (id === "password2") {
+      const pass1 = document.querySelector("#password");
       if (el.value === pass1.value) {
         removeErrorClasses(el);
       } else {
@@ -100,7 +142,6 @@ if (document.querySelector(".js-form-register")) {
     }
 
     return error;
-    
   }
   
   [].forEach.call(formInputs, function(input) {
@@ -119,11 +160,10 @@ if (document.querySelector(".js-form-register")) {
         formErrors = true;
       }
     });
-
-    const test = document.querySelector("#fusername");
     
     // if (formErrors !== true) {
       sendForm();
     // }
   })
 }
+});

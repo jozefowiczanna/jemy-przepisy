@@ -52,6 +52,8 @@
 
   &__link {
     margin: 0 auto;
+    text-align: center;
+    display: block;
   }
 
   &__btn {
@@ -71,6 +73,11 @@
 
   &__error.visible {
     display: block;
+  }
+
+  &__msg {
+    margin: 20px;
+    text-align: center;
   }
 }
 
