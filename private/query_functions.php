@@ -45,7 +45,7 @@
     $sql = "SELECT r.*, c.category FROM recipes r ";
     $sql .= "JOIN categories c ON r.category_id = c.id ";
     if ($category != "all") {
-      $sql .= "WHERE category_id = '1' ";
+      $sql .= "WHERE category_id = :category ";
     }
     if ($userid) {
       $sql .= "WHERE user_id = :userid ";

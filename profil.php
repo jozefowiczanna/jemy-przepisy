@@ -74,22 +74,27 @@
       // Przepisy użytkownika wyszukane na bazie id
       $options['user_id'] = $user['id'];
       $recipes = find_recipes($options);
+      $num_rows = $recipes->rowCount();
       ?>
       <ul class="ingred__list">
         <?php
-        while ($row = $recipes->fetch()):
-        ?>
-        <li class="ingred__item">
-          <a href="show.php?id=<?php echo $row['id']; ?>" class="link">
-            <?php echo $row['recipe_name']; ?>
-          </a>
-          <?php if ($is_logged_user_profile): ?>
-            <a href="edit.php?id=<?php echo $row['id'] ?>" class="cta-btn cta-btn--small">Edytuj</a>
-          <?php endif; ?>
-        </li>
-        <?php
-        endwhile;
-        ?>
+        if ($num_rows > 0):
+          while ($row = $recipes->fetch()):
+          ?>
+          <li class="ingred__item">
+            <a href="show.php?id=<?php echo $row['id']; ?>" class="link">
+              <?php echo $row['recipe_name']; ?>
+            </a>
+            <?php if ($is_logged_user_profile): ?>
+              <a href="edit.php?id=<?php echo $row['id'] ?>" class="cta-btn cta-btn--small">Edytuj</a>
+            <?php endif; ?>
+          </li>
+          <?php
+          endwhile;
+        else:?>
+        <li>Użytkownik nie dodał jeszcze żadnego przepisu.</li>
+      <?php 
+      endif; ?>
       </ul>
     </div>
 
@@ -97,22 +102,27 @@
       <h2>Polubienia</h2>
       <?php 
       $recipes = find_users_favorite_recipes($user['id']);
+      $num_rows = $recipes->rowCount();
       ?>
       <ul class="ingred__list">
         <?php
-        while ($row = $recipes->fetch()):
-        ?>
-        <li class="ingred__item">
-          <a href="show.php?id=<?php echo $row['id']; ?>" class="link">
-            <?php echo $row['recipe_name']; ?>
-          </a>
-          <?php if ($is_logged_user_profile): ?>
-            <a href="edit.php?id=<?php echo $row['id'] ?>" class="cta-btn cta-btn--small cta-btn--secondary">Usuń lajka</a>
-          <?php endif; ?>
-        </li>
-        <?php
-        endwhile;
-        ?>
+        if ($num_rows > 0):
+          while ($row = $recipes->fetch()):
+          ?>
+          <li class="ingred__item">
+            <a href="show.php?id=<?php echo $row['id']; ?>" class="link">
+              <?php echo $row['recipe_name']; ?>
+            </a>
+            <?php if ($is_logged_user_profile): ?>
+              <a href="edit.php?id=<?php echo $row['id'] ?>" class="cta-btn cta-btn--small cta-btn--secondary">Usuń lajka</a>
+            <?php endif; ?>
+          </li>
+          <?php
+          endwhile;
+        else:?>
+          <li>Użytkownik nie polubił jeszcze żadnego przepisu.</li>
+        <?php 
+        endif; ?>
       </ul>
     </div>
 
