@@ -22,4 +22,12 @@
     display: inline-block;
     margin: 0 10px;
   }
+
+  &--secondary {
+    background: $secondary;
+
+    &:hover {
+      background: $secondary-hover;
+    }
+  }
 }

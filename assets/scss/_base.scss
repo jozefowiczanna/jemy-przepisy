@@ -25,13 +25,13 @@ body {
 }
 
 .link {
-  color: $primary;
+  color: $link;
   text-decoration: underline;
   font-weight: $semi-bold;
   transition: $def-transition;
 
   &:hover {
-    color: $primary-dark;
+    color: $link-hover;
   }
 }
 

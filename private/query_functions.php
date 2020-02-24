@@ -1,5 +1,12 @@
 <?php 
 
+  function check_for_error($stmt) {
+    $errorInfo = $stmt->errorInfo();
+    if (isset($errorInfo[2])) {
+      return true;
+    }
+  }
+
   function find_recipe_by_id($id) {
     global $db;
 
@@ -28,14 +35,6 @@
 
     $category = $options['category'] ?? "all";
     $userid = $options['user_id'] ?? false;
-    /*
-    użytkownik wybiera przy pomocy radio button kolumnę wg której sortuje przepisy
-    Teoretycznie użytkownik może zmienić wartość value wybranego inputa na własną przed wysłaniem formularza
-    
-    PDO nie umożliwia ustawienia bindParam/bindValue dla NAZWY kolumny, tylko dla jej WARTOŚCI
-    Dlatego najlepszą formą walidacji jest w takim przypadku sprawdzenie czy wartość $sort odpowiada wartości 1 z konkretnych kolumn
-    */
-
     
     if (isset($options['sort'])) {
       $sort = ($options['sort'] == "num_likes") ? "num_likes" : "date_added";
@@ -43,7 +42,6 @@
       $sort = $options['sort'] ?? "date_added";
     }
     
-    // 1. STWORZENIE ZAPYTANIA
     $sql = "SELECT r.*, c.category FROM recipes r ";
     $sql .= "JOIN categories c ON r.category_id = c.id ";
     if ($category != "all") {
@@ -54,13 +52,10 @@
     }
     $sql .= "ORDER BY $sort DESC";
 
-    // 2. PRZYPISANIE PARAMETRÓW
     $stmt = $db->prepare($sql);
-    // Wyszukiwanie przepisów w konkretnej kategorii
     if ($category != "all") {
       $stmt->bindParam(':category', $category);
     }
-    // Wyszukiwanie przepisów autorstwa konkretnego użytkownika
     if ($userid) {
       $stmt->bindParam(':userid', $userid);
     }
@@ -92,6 +87,22 @@
     return $row;
   }
 
+  // ulubione przepisy użytkownika
+  function find_users_favorite_recipes($userid) {
+    global $db;
+
+    $sql = "SELECT r.recipe_name, r.id FROM likes l JOIN recipes r ON l.recipe_id = r.id ";
+    $sql .= "WHERE l.user_id = :userid";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':userid', $userid);
+    $stmt->execute();
+    if (check_for_error($stmt)) {
+      return "dberror";
+    }
+
+    return $stmt;
+  }
+
   function find_all_categories() {
     global $db;
 
@@ -108,8 +119,7 @@
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':email', $email);
     $stmt->execute();
-    $errorInfo = $stmt->errorInfo();
-    if (isset($errorInfo[2])) {
+    if (check_for_error($stmt)) {
       return "dberror";
     }
     $result = $stmt->fetch();
@@ -124,8 +134,7 @@
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':id', $id);
     $stmt->execute();
-    $errorInfo = $stmt->errorInfo();
-    if (isset($errorInfo[2])) {
+    if (check_for_error($stmt)) {
       return "dberror";
     }
     $result = $stmt->fetch();

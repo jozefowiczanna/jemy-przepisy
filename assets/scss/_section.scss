@@ -61,6 +61,17 @@
       }
     }
   }
+
+  &__box {
+    background: $ingred-bg;
+    padding: 10px 20px;
+    display: inline-block;
+    margin: 0 0 15px;
+  }
+
+  &__subsection {
+    margin: 10px 0 30px;
+  }
 }
 
 .ingred {

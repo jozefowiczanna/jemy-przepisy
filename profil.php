@@ -42,14 +42,24 @@
 <section class="section">
   <div class="container">
     <?php 
-    
+    if ($is_logged_user_profile) {
+      echo "<h1 class='section__title'>Twój profil</h1>";
+    } else {
+      echo "<h1 class='section__title'>Profil użytkownika</h1>";
+    }
+    ?>
+    <?php 
       if ($user_error_msg) {
         fatal_error_display($user_error_msg);
         exit();
-      } else {
-        echo "<h1 class='section__title'>" . $user['username'] . "</h1>";
       }
     ?>
+
+      <div class="section__box">
+        <p class='p'><b>Nazwa użytkownika:</b> <?php echo $user['username']; ?> </p>
+        <p class='p'><b>Data dołączenia:</b> <?php echo datetime_to_date($user['signup_date']); ?> </p>
+      </div>
+
     <?php 
       // Jeśli profil użytkownika = aktualnie wyświetlany profil
       if ($is_logged_user_profile): ?>
@@ -58,29 +68,55 @@
       </div>
     <?php endif; ?>
 
-    <h2>Przepisy</h2>
+    <div class="section__subsection">
+      <h2>Przepisy</h2>
+      <?php 
+      // Przepisy użytkownika wyszukane na bazie id
+      $options['user_id'] = $user['id'];
+      $recipes = find_recipes($options);
+      ?>
+      <ul class="ingred__list">
+        <?php
+        while ($row = $recipes->fetch()):
+        ?>
+        <li class="ingred__item">
+          <a href="show.php?id=<?php echo $row['id']; ?>" class="link">
+            <?php echo $row['recipe_name']; ?>
+          </a>
+          <?php if ($is_logged_user_profile): ?>
+            <a href="edit.php?id=<?php echo $row['id'] ?>" class="cta-btn cta-btn--small">Edytuj</a>
+          <?php endif; ?>
+        </li>
+        <?php
+        endwhile;
+        ?>
+      </ul>
+    </div>
 
-    <?php 
-    // Przepisy użytkownika wyszukane na bazie id
-    $options['user_id'] = $user['id'];
-    $recipes = find_recipes($options);
-    ?>
-    <ul class="ingred__list">
-      <?php
-      while ($row = $recipes->fetch()):
+    <div class="section__subsection">
+      <h2>Polubienia</h2>
+      <?php 
+      $recipes = find_users_favorite_recipes($user['id']);
       ?>
-      <li class="ingred__item">
-        <a href="show.php?id=<?php echo $row['id']; ?>" class="link">
-          <?php echo $row['recipe_name']; ?>
-        </a>
-        <?php if ($is_logged_user_profile): ?>
-          <a href="edit.php?id=<?php echo $row['id'] ?>" class="cta-btn cta-btn--small">Edytuj</a>
-        <?php endif; ?>
-      </li>
-      <?php
-      endwhile;
-      ?>
-    </ul>
+      <ul class="ingred__list">
+        <?php
+        while ($row = $recipes->fetch()):
+        ?>
+        <li class="ingred__item">
+          <a href="show.php?id=<?php echo $row['id']; ?>" class="link">
+            <?php echo $row['recipe_name']; ?>
+          </a>
+          <?php if ($is_logged_user_profile): ?>
+            <a href="edit.php?id=<?php echo $row['id'] ?>" class="cta-btn cta-btn--small cta-btn--secondary">Usuń lajka</a>
+          <?php endif; ?>
+        </li>
+        <?php
+        endwhile;
+        ?>
+      </ul>
+    </div>
+
+    
 
   </div>
 </section>
