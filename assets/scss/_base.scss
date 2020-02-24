@@ -81,6 +81,17 @@ body {
   }
 }
 
+// Unikalne klasy
+
+.fatal-error {
+  color: #c33333;
+  font-weight: $semi-bold;
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #ffbaba;
+  background: #fff6f6;
+}
+
 // TODO przenieść do sekcji
 .main-img {
   min-height: 200px;

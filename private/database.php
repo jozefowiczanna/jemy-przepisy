@@ -26,4 +26,11 @@
     }
   }
 
+  function fatal_error_display($msg="Błąd.") {
+    echo "<p class='fatal-error'>$msg</p><br />";
+    echo "<a class='link' href='index.php'>Wróć do strony głównej</a>";
+    include(SHARED_PATH . '/footer.php');
+    exit();
+  }
+
 ?>

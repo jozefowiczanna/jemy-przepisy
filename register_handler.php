@@ -1,6 +1,5 @@
 <?php 
 require_once('private/initialize.php');
-require_once('private/validation.php'); 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
   

@@ -7,7 +7,7 @@
 <section class="section">
   <div class="container">
     <h1 class="section__title section__title--centered">Zarejestruj się</h1>
-    <form action="send-script.php" method="post" class="form form--flex form--centered js-form-register">
+    <form action="register_handler.php" method="post" class="form form--flex form--centered js-form-register">
       <div class="form__row">
         <label for="username" class="form__label"><span class="form__label">Pseudonim
           <span class="form__label-info">(widoczny dla innych użytkowników)</span>
@@ -35,9 +35,10 @@
       </div>
       <button class="cta-btn form__btn" type="submit" name="btn-submit">Zarejestruj się</button>
       <p class="form__info">Masz już konto?</p>
-      <a href="#" class="link form__link">Zaloguj się!</a>
+      <a href="login.php" class="link form__link">Zaloguj się!</a>
     </form>
   </div>
 </section>
   
+<script src="assets/js/register.js"></script>
 <?php include(SHARED_PATH . '/footer.php'); ?>

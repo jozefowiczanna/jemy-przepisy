@@ -15,4 +15,11 @@
   &:hover {
     background: $primary-dark;
   }
+
+  &--small {
+    font-size: 13px;
+    padding: 4px 6px;
+    display: inline-block;
+    margin: 0 10px;
+  }
 }

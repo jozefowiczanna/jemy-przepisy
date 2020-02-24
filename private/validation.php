@@ -12,7 +12,9 @@ function validateRegex($fields, $regs) {
   return $errors;
 }
 
-
+function is_blank($value) {
+  return !isset($value) || trim($value) === '';
+}
 
 
 ?>

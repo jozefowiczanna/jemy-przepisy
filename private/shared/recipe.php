@@ -25,7 +25,7 @@ if (isset($recipe['label'])) {
     <h3 class="card__title"><?php echo h($recipe['recipe_name']); ?></h3>
   </a>
   <div class="card__body">
-    <div class="card__author"><?php echo h($recipe['added_by']); ?></div>
+    <div class="card__author"><?php echo h($recipe['username']); ?></div>
     <div class="card__date"><?php echo h($recipe['date_added']); ?></div>
     <div class="card__category"><?php echo h($recipe['category']); ?></div>
     <div class="card__iconset">

@@ -4,7 +4,7 @@
   $search['category'] = $_POST['category'] ?? 'all';
   $search['sort'] = $_POST['sort'] ?? 'date_added';
 
-  $all_recipes = find_recipes(['sort' => $search['sort'], 'category' => $search['category']]);
+  $all_recipes = find_recipes($search);
 ?>
 
 <?php  include_once(SHARED_PATH . "/header.php"); ?>
@@ -50,6 +50,8 @@
     <div class="flex-row">
     <?php 
       while ($recipe = $all_recipes->fetch()) {
+        $user = find_user_by_id($recipe['user_id']);
+        $recipe['username'] = $user['username'];
         $recipe['date_added'] = datetime_to_date($recipe['date_added']);
         $recipe['difficulty_desc'] = get_difficulty_desc($recipe['difficulty']);
         include(SHARED_PATH . '/recipe.php');

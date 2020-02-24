@@ -2,6 +2,14 @@
 
 if(!isset($page_title)) { $page_title = 'Jemy'; }
 
+if (isset($_SESSION['user_id'])) {
+  // if user logged in, set nav link to profile page
+  $link = "profil.php?id=" . $_SESSION['user_id'];
+} else {
+  // if user not logged in, set nav link to login page
+  $link = "login.php";
+}
+
 ?>
 
 
@@ -22,9 +30,12 @@ if(!isset($page_title)) { $page_title = 'Jemy'; }
         <div class="navbar__inner">
           <a href="index.php" class="navbar__brand">JEMY!</a>
           <nav class="nav">
-            <a href="recipes.php" class="nav__link"><img src="assets/images/icons/menu_book-24px.svg" alt="przepisy" class="nav__icon"></a>
-            <a href="users.php" class="nav__link"><img src="assets/images/icons/people-24px.svg" alt="użytkownicy" class="nav__icon"></a>
-            <a href="register.php" class="nav__link"><img src="assets/images/icons/person-24px.svg" alt="twój profil" class="nav__icon"></a>
+            <a href="recipes.php" class="nav__link"><img src="assets/images/icons/menu_book-24px.svg" alt="przepisy" title="przepisy" class="nav__icon"></a>
+            <a href="users.php" class="nav__link"><img src="assets/images/icons/people-24px.svg" alt="użytkownicy" title="użytkownicy" class="nav__icon"></a>
+            <a href="<?php echo $link; ?>" class="nav__link"><img src="assets/images/icons/person-24px.svg" alt="twój profil" title="twój profil" class="nav__icon"></a>
+            <?php if(isset($_SESSION['user_id'])) {
+              echo "<a href='logout.php' class='nav__link'><img src='assets/images/icons/logout.svg' alt='wyloguj się' title='wyloguj się' class='nav__icon'></a>";
+            } ?>
           </nav>
         </div>
       </div>
