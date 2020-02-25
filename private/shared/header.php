@@ -4,7 +4,7 @@ if(!isset($page_title)) { $page_title = 'Jemy'; }
 
 if (isset($_SESSION['user_id'])) {
   // if user logged in, set nav link to profile page
-  $link = "profil.php?id=" . $_SESSION['user_id'];
+  $link = "profile.php?id=" . $_SESSION['user_id'];
 } else {
   // if user not logged in, set nav link to login page
   $link = "login.php";

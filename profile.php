@@ -18,7 +18,7 @@
   } else {
     // Zalogowany użytkownik > przekierowanie na jego profil
     if (isset($_SESSION['user_id'])) {
-      header("Location: profil.php?id=" . $_SESSION['user_id']);
+      header("Location: profile.php?id=" . $_SESSION['user_id']);
     // Niezalogowany użytkownik > przekierowanie na stronę logowania
     } else {
       header("Location: login.php");

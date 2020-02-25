@@ -28,7 +28,7 @@ window.addEventListener("DOMContentLoaded", function() {
       link.textContent = "Przejdź do profilu";
       link.classList.add("link");
       link.classList.add("form__link");
-      link.href = "profil.php";
+      link.href = "profile.php";
       frag.appendChild(link);
     }
     container.appendChild(frag);

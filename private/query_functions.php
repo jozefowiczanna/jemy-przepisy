@@ -112,6 +112,15 @@
     return $result;
   }
 
+  function find_all_users() {
+    global $db;
+
+    $sql = "SELECT * FROM users ORDER BY username";
+    $result = $db->query($sql);
+
+    return $result;
+  }
+
   function find_user_by_email($email) {
     global $db;
 

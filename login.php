@@ -8,7 +8,7 @@
 
 
   if (isset($_SESSION['user_id'])) {
-    header("Location: profil.php?id=" . $_SESSION['user_id']);
+    header("Location: profile.php?id=" . $_SESSION['user_id']);
   }
 ?>
 

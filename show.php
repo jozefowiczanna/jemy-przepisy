@@ -19,7 +19,7 @@
       <div class="col-2">
         <h1 class="section__title"><?php echo $recipe['recipe_name']; ?></h1>
         <p class="section__author">autor: 
-        <a href="<?php echo "profil.php?id=" . $recipe['user_id'] ?>"><?php echo $recipe['username']; ?></a>
+        <a href="<?php echo "profile.php?id=" . $recipe['user_id'] ?>"><?php echo $recipe['username']; ?></a>
         <p class="section__para"><?php echo $recipe['category']; ?></p>
         <div class="card__iconset">
           <div class="card__icon">
