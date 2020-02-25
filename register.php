@@ -7,7 +7,7 @@
 <section class="section">
   <div class="container">
     <h1 class="section__title section__title--centered">Zarejestruj się</h1>
-    <form action="register_handler.php" method="post" class="form form--flex form--centered js-form-register">
+    <form action="private/handlers/register_handler.php" method="post" class="form form--flex form--centered js-form-register">
       <div class="form__row">
         <label for="username" class="form__label"><span class="form__label">Pseudonim
           <span class="form__label-info">(widoczny dla innych użytkowników)</span>
