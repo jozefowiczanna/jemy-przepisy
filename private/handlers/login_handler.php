@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   $user['email'] = $_POST['email'] ?? "";
   $user['password'] = $_POST['password'] ?? "";
   
-  if (is_blank($user['email']) || is_blank($user['password'])) {
+  if (is_empty($user['email']) || is_empty($user['password'])) {
     $return['errors'] = true;
   }
 

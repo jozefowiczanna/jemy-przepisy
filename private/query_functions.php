@@ -7,6 +7,13 @@
     }
   }
 
+  function return_error_msg($stmt) {
+    $errorInfo = $stmt->errorInfo();
+    if (isset($errorInfo[2])) {
+      return $errorInfo[2];
+    }
+  }
+
   function find_recipe_by_id($id) {
     global $db;
 
@@ -164,6 +171,24 @@
     $stmt->bindParam(':email', $user['email']);
     $stmt->bindParam(':hashed_password', $hashed_password);
     $result = $stmt->execute();
+
+    return $result;
+  }
+
+  function insert_recipe($recipe) {
+    global $db;
+
+    $date_added = date("Y-m-d H:i:s");
+
+    $sql = "INSERT INTO recipes (`recipe_name`, `user_id`, `description`, `category_id`, `ingredients`, `preparation`, `prep_time`, `difficulty`, `img`, `date_added`, `num_likes`) ";
+    $sql .= "VALUES (:recipe_name, :user_id, :description, :category_id, :ingredients, :preparation, :prep_time, :difficulty, :img, '$date_added', '0')";
+    $stmt = $db->prepare($sql);
+    foreach($recipe as $key => &$value) {
+      $stmt->bindParam($key, $value);
+    }
+    $result = $stmt->execute();
+    // $msg = return_error_msg($stmt);
+    // echo $msg;
 
     return $result;
   }

@@ -11,6 +11,10 @@
     margin: 0 auto;
   }
 
+  &--wide {
+    max-width: 550px;
+  }
+
   &__label {
     font-weight: $semi-bold;
   }
@@ -22,10 +26,9 @@
     font-size: 15px;
   }
 
-  &__select, &__input {
+  &__select, &__input, &__textarea {
     display: block;
     width: 100%;
-    max-width: 450px;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -36,6 +39,19 @@
     &--error {
       border-color: #ff0000;
     }
+  }
+
+  &__select--narrow {
+    max-width: 120px;
+  }
+
+  &__input--narrow {
+    max-width: 70px;
+    text-align: center;
+  }
+
+  &__textarea {
+    font-size: 14px;
   }
 
   &__form-group {

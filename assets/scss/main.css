@@ -476,6 +476,10 @@ body {
   margin: 0 auto;
 }
 
+.form--wide {
+  max-width: 550px;
+}
+
 .form__label {
   font-weight: 600;
 }
@@ -487,10 +491,9 @@ body {
   font-size: 15px;
 }
 
-.form__select, .form__input {
+.form__select, .form__input, .form__textarea {
   display: block;
   width: 100%;
-  max-width: 450px;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -500,8 +503,21 @@ body {
   color: #505050;
 }
 
-.form__select--error, .form__input--error {
+.form__select--error, .form__input--error, .form__textarea--error {
   border-color: #ff0000;
+}
+
+.form__select--narrow {
+  max-width: 120px;
+}
+
+.form__input--narrow {
+  max-width: 70px;
+  text-align: center;
+}
+
+.form__textarea {
+  font-size: 14px;
 }
 
 .form__form-group {

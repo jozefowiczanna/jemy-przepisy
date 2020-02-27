@@ -1,12 +1,6 @@
 <?php 
   require_once('private/initialize.php'); 
-  // successfully logged in
-  // set session variables and redirect to profile page
-
-  // if user logged in redirect to profile page
   
-
-
   if (isset($_SESSION['user_id'])) {
     header("Location: profile.php?id=" . $_SESSION['user_id']);
   }
