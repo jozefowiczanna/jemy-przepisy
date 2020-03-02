@@ -11,7 +11,7 @@
   <div class="container">
     <h1 class="section__title section__title--centered">Zaloguj się</h1>
 
-    <form action="private/handlers/login_handler.php" method="post" class="form form--flex form--centered js-form-register">
+    <form action="private/handlers/login_handler.php" method="post" class="form form--flex js-form-register">
       <div class="form__row">
         <label for="email" class="form__label">Email</label>
         <input type="text" id="email" name="email" class="form__input" autocomplete="off">

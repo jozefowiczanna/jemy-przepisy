@@ -1,4 +1,5 @@
 .form {
+  margin: 50px auto 0;
   margin-top: 50px;
   max-width: 450px;
   
@@ -6,13 +7,24 @@
     display: flex;
     flex-direction: column;
   }
+
+  &--center-items {
+    display: flex;
+    flex-direction: column;
+  }
   
-  &--centered {
-    margin: 0 auto;
+  &--to-left {
+    margin: 50px 0 0;
   }
 
   &--wide {
     max-width: 550px;
+  }
+
+  &__row--centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   &__label {
@@ -39,6 +51,11 @@
     &--error {
       border-color: #ff0000;
     }
+  }
+
+  &__file-input {
+    display: block;
+    margin: 10px 0;
   }
 
   &__select--narrow {
@@ -85,6 +102,14 @@
     margin: -10px 0 20px;
     font-size: 14px;
     display: none;
+
+    &--centered {
+      text-align: center;
+    }
+
+    &--file {
+      margin: 10px 0;
+    }
   }
 
   &__error.visible {

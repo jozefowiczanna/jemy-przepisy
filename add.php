@@ -10,7 +10,7 @@
   <div class="container">
     <h1 class="section__title section__title--centered">Dodaj przepis</h1>
 
-    <form action="private/handlers/add_handler.php" method="post" class="form form--flex form--centered form--wide js-form-add">
+    <form action="private/handlers/add_handler.php" method="post" class="form form--flex form--wide js-form-add">
       <div class="form__row">
         <label for="recipe_name" class="form__label">Nazwa</label>
         <input type="text" id="recipe_name" name="recipe_name" class="form__input js-check" autocomplete="off">

@@ -12,7 +12,7 @@
 <section class="section">
   <div class="container">
     <h1 class="section__title">Przepisy</h1>
-    <form action="recipes.php" method="post" class="form">
+    <form action="recipes.php" method="post" class="form form--to-left">
       <label class="form__label" for="category">Wybierz kategorię:</label>
       <select class="form__select" name="category" id="category">
         <option value="all">Wszytkie</option>

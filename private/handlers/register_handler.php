@@ -31,6 +31,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   if (!$find_user && !isset($return["errors"])) {
     $insert = insert_user($user);
     if($insert) {
+      // User has been added to db
+      
+      // Need to set session variable containing user id to keep him logged in
+      // lastInsertId is not recommended, so find user query has to be made
+      // TODO check if there is a better solution
+      $find_user = find_user_by_email($user['email']);
+      if ($find_user) {
+        $_SESSION['user_id'] = $find_user['id'];
+        $return['loggedin'] = true;
+      }
       $return['status'] = "success";
     } else {
       $return['status'] = "fail";

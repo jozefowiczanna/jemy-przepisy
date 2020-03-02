@@ -131,7 +131,7 @@
   function find_user_by_email($email) {
     global $db;
 
-    $sql = "SELECT * FROM users WHERE email = :email";
+    $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':email', $email);
     $stmt->execute();

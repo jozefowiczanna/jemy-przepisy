@@ -64,7 +64,7 @@
       // Jeśli profil użytkownika = aktualnie wyświetlany profil
       if ($is_logged_user_profile): ?>
       <div>
-        <a href="dodaj.php" class="cta-btn">Dodaj przepis</a>
+        <a href="add.php" class="cta-btn">Dodaj przepis</a>
       </div>
     <?php endif; ?>
 
