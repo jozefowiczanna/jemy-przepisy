@@ -7,7 +7,7 @@
   // Pobieranie danych TYLKO jeśli url posiada parametr id
   if (isset($_GET['id']) && !empty($_GET['id'])) {
     $user = find_user_by_id($_GET['id']);
-    if ($user == "dberror") {
+    if ($user === "dberror") {
       // Błąd bazy przy pobieraniu informacji o użytkowniku
       $user_error_msg = $errors_list['db'];
     } else if(!$user) {

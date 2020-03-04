@@ -21,6 +21,10 @@
     max-width: 550px;
   }
 
+  &--auto-margin {
+    margin: auto;
+  }
+
   &__row--centered {
     display: flex;
     flex-direction: column;

@@ -41,7 +41,7 @@ function appendMessage(status) {
 }
 
 function sendForm() {
-  const formFields = document.querySelectorAll(".js-form-add .js-check, #category_id, #difficulty");
+  const formFields = document.querySelectorAll(".js-form-add .js-check, #category_id, #difficulty, #description");
   const formData = new FormData();
   const btnSubmit = form.querySelector("[type=submit]");
   

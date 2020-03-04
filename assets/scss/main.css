@@ -90,6 +90,10 @@ body {
   }
 }
 
+.text-center {
+  text-align: center;
+}
+
 .fatal-error {
   color: #c33333;
   font-weight: 600;
@@ -111,6 +115,13 @@ body {
   -webkit-box-shadow: 20px 20px 0 #D8FFA7;
           box-shadow: 20px 20px 0 #D8FFA7;
   border: 2px solid #D8FFA7;
+}
+
+.msg-success {
+  font-weight: 600;
+  color: #248800;
+  background: #E3FFC0;
+  padding: 20px;
 }
 
 .navbar {
@@ -207,6 +218,15 @@ body {
 .section__author {
   font-weight: 600;
   font-size: 16px;
+}
+
+.section__img-holder {
+  height: 100%;
+  width: 100%;
+  min-height: 300px;
+  max-height: 500px;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .section__img {
@@ -489,6 +509,10 @@ body {
 
 .form--wide {
   max-width: 550px;
+}
+
+.form--auto-margin {
+  margin: auto;
 }
 
 .form__row--centered {

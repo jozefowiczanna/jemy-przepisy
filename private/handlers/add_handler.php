@@ -43,14 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   // get optional values (no validation required)
   $recipe['description'] = $_POST['description'] ?? "";
   $recipe['description'] = trim($recipe['description']);
+  $recipe['description'] = nl2br($recipe['description']);
 
-  // TODO change else statement
   // add_handler.php - make sure only logged in user has access to this page, redirect to index page otherwise
   // edit - only logged in user AND author of this recipe should have acces to this page, redirect otherwise
   if (isset($_SESSION['user_id'])) {
     $recipe['user_id'] = $_SESSION['user_id'];
-  } else {
-    $recipe['user_id'] = "1";
   }
   $recipe['img'] = "default.jpg";
   

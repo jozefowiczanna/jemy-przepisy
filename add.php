@@ -3,6 +3,10 @@
 
   $search['category'] = $_POST['category'] ?? 'all';
 
+  if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+  }
+
 ?>
 
 <?php include(SHARED_PATH . '/header.php'); ?>
@@ -60,6 +64,7 @@
         </select>
         <p class="form__error">Błąd</p>
       </div>
+      <p>Po dodaniu przepisu będziesz mógł dodać zdjęcie.</p>
       <button class="cta-btn form__btn" type="submit" name="btn-submit">Dodaj</button>
     </form>
   </div>

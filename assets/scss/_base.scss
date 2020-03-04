@@ -81,7 +81,11 @@ body {
   }
 }
 
-// Unikalne klasy
+// Unique classes
+
+.text-center {
+  text-align: center;
+}
 
 .fatal-error {
   color: #c33333;
@@ -103,4 +107,11 @@ body {
   margin: 20px 0;
   box-shadow: 20px 20px 0 $nav-bg;
   border: 2px solid $nav-bg;
+}
+
+.msg-success {
+  font-weight: $semi-bold;
+  color: $primary-dark;
+  background: $ingred-bg;
+  padding: 20px;
 }

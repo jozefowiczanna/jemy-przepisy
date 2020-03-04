@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   if (count($errors) == 0) {
     $find_user = find_user_by_email($user['email']);
 
-    if ($find_user == "dberror") {
+    if ($find_user === "dberror") {
       $return['dberror'] = true;
     } else if ($find_user['email']) {
       if (!password_verify($user['password'], $find_user['hashed_password'])) {

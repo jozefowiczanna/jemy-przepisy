@@ -2,3 +2,5 @@
 /node_modules
 test.php
 /private/db_credentials.php
+/uploads
+/assets/images/food

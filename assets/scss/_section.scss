@@ -42,6 +42,15 @@
     font-size: $para;
   }
 
+  &__img-holder {
+    height: 100%;
+    width: 100%;
+    min-height: 300px;
+    max-height: 500px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
   &__img {
     display: block;
     width: 100%;
